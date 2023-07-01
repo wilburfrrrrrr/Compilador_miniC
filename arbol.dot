@@ -1,0 +1,560 @@
+// AST para Mini C
+digraph AST {
+	node [color=deepskyblue shape=box style=filled]
+	edge [arrowhead=none]
+	n01 [label=Traduccion]
+	n02 [label="Definición de variables 
+Tipo = 'int' 
+Var = (variable(nombre='printf'), l_parametros(params=parametros(type='char', nombre=unary(op='*', expr=variable(nombre='str'))), ellipsis=True))"]
+	n02 -> False
+	n02 -> True
+	n01 -> n02
+	n03 [label="Definición de variables 
+Tipo = 'char' 
+Var = unary(op='*', expr=(variable(nombre='malloc'), l_parametros(params=parametros(type='int', nombre=variable(nombre='size')), ellipsis=False)))"]
+	n03 -> False
+	n03 -> True
+	n01 -> n03
+	n04 [label="Definición de variables 
+Tipo = 'int' 
+Var = (variable(nombre='free'), l_parametros(params=parametros(type='char', nombre=unary(op='*', expr=variable(nombre='ptr'))), ellipsis=False))"]
+	n04 -> False
+	n04 -> True
+	n01 -> n04
+	n05 [label="Definición de variables 
+Tipo = 'int' 
+Var = variable(nombre='stuff_count')"]
+	n05 -> False
+	n05 -> True
+	n01 -> n05
+	n06 [label="Definición de variables 
+Tipo = 'int' 
+Var = (variable(nombre='increment_stuff_count'),)"]
+	n06 -> False
+	n06 -> True
+	n01 -> n06
+	n07 [label="Definición de variables 
+Tipo = 'int' 
+Var = variable(nombre='fib_count')"]
+	n07 -> False
+	n07 -> False
+	n01 -> n07
+	n08 [label="Definición de funcion 
+Tipo = 'int' 
+Nombre = '(variable(nombre='fib'), l_parametros(params=parametros(type='int', nombre=variable(nombre='n')), ellipsis=False))'"]
+	n09 [label=Compuesto]
+	n10 [label="Operador Binario 
+op = '+='"]
+	n11 [label="Variable 
+Nombre = 'fib_count'"]
+	n10 -> n11
+	n12 [label="Int 
+Nombre = '1'"]
+	n10 -> n12
+	n09 -> n10
+	n13 [label=If]
+	n14 [label="Operador Binario 
+op = '<='"]
+	n15 [label="Variable 
+Nombre = 'n'"]
+	n14 -> n15
+	n16 [label="Int 
+Nombre = '1'"]
+	n14 -> n16
+	n13 -> n14
+	n17 [label=Return]
+	n18 [label="Variable 
+Nombre = 'n'"]
+	n17 -> n18
+	n13 -> n17
+	n09 -> n13
+	n19 [label=Return]
+	n20 [label="Operador Binario 
+op = 'llamada(funcion=variable(nombre='fib'), exp=[binary(op=variable(nombre='n'), left=variable(nombre='n'), right=numero_i(type='int', nombre='1'))])'"]
+	n21 [label="Llamada a función 
+Nombre = 'variable(nombre='fib')'"]
+	n22 [label="Operador Binario 
+op = 'variable(nombre='n')'"]
+	n23 [label="Variable 
+Nombre = 'n'"]
+	n22 -> n23
+	n24 [label="Int 
+Nombre = '1'"]
+	n22 -> n24
+	n21 -> n22
+	n20 -> n21
+	n25 [label="Llamada a función 
+Nombre = 'variable(nombre='fib')'"]
+	n26 [label="Operador Binario 
+op = 'variable(nombre='n')'"]
+	n27 [label="Variable 
+Nombre = 'n'"]
+	n26 -> n27
+	n28 [label="Int 
+Nombre = '2'"]
+	n26 -> n28
+	n25 -> n26
+	n20 -> n25
+	n19 -> n20
+	n09 -> n19
+	n08 -> n09
+	n08 -> True
+	n08 -> False
+	n01 -> n08
+	n29 [label="Definición de funcion 
+Tipo = 'int' 
+Nombre = '(variable(nombre='show_fib'), l_parametros(params=parametros(type='int', nombre=variable(nombre='n')), ellipsis=False))'"]
+	n30 [label=Compuesto]
+	n31 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n32 [label="String 
+Nombre = '\"fin(%d) es %d.\n\"'"]
+	n31 -> n32
+	n33 [label="Variable 
+Nombre = 'n'"]
+	n31 -> n33
+	n34 [label="Llamada a función 
+Nombre = 'variable(nombre='fib')'"]
+	n35 [label="Variable 
+Nombre = 'n'"]
+	n34 -> n35
+	n31 -> n34
+	n30 -> n31
+	n36 [label=Return]
+	n37 [label="Int 
+Nombre = '0'"]
+	n36 -> n37
+	n30 -> n36
+	n29 -> n30
+	n29 -> True
+	n29 -> False
+	n01 -> n29
+	n38 [label="Definición de funcion 
+Tipo = 'int' 
+Nombre = '(variable(nombre='set_a'), l_parametros(params=parametros(type='char', nombre=unary(op='*', expr=variable(nombre='c'))), ellipsis=False))'"]
+	n39 [label=Compuesto]
+	n40 [label="Operador Binario 
+op = '='"]
+	n41 [label="Operador Unario 
+op = '*'"]
+	n42 [label="Variable 
+Nombre = 'c'"]
+	n41 -> n42
+	n40 -> n41
+	n43 [label="Char 
+Nombre = ''a''"]
+	n40 -> n43
+	n39 -> n40
+	n44 [label=Return]
+	n45 [label="Int 
+Nombre = '0'"]
+	n44 -> n45
+	n39 -> n44
+	n38 -> n39
+	n38 -> True
+	n38 -> False
+	n01 -> n38
+	n46 [label="Definición de funcion 
+Tipo = 'char' 
+Nombre = 'unary(op='*', expr=(variable(nombre='get_literal'),))'"]
+	n47 [label=Compuesto]
+	n48 [label=Return]
+	n49 [label="String 
+Nombre = '\"blah bla blah\n\"'"]
+	n48 -> n49
+	n47 -> n48
+	n46 -> n47
+	n46 -> True
+	n46 -> False
+	n01 -> n46
+	n50 [label="Definición de funcion 
+Tipo = 'int' 
+Nombre = '(variable(nombre='main'), l_parametros(params=(parametros(type='int', nombre=variable(nombre='argc')), parametros(type='char', nombre=unary(op='*', expr=unary(op='*', expr=variable(nombre='argv'))))), ellipsis=False))'"]
+	n51 [label=Compuesto]
+	n52 [label="Definición de variables 
+Tipo = 'char' 
+Var = variable(nombre='c')"]
+	n52 -> False
+	n52 -> False
+	n51 -> n52
+	n53 [label="Definición de variables 
+Tipo = 'int' 
+Var = variable(nombre='i')"]
+	n53 -> False
+	n53 -> False
+	n51 -> n53
+	n54 [label="Operador Binario 
+op = '='"]
+	n55 [label="Variable 
+Nombre = 'c'"]
+	n54 -> n55
+	n56 [label="Char 
+Nombre = ''h''"]
+	n54 -> n56
+	n51 -> n54
+	n57 [label="Operador Binario 
+op = '='"]
+	n58 [label="Variable 
+Nombre = 'fib_count'"]
+	n57 -> n58
+	n59 [label="Operador Binario 
+op = '='"]
+	n60 [label="Variable 
+Nombre = 'stuff_count'"]
+	n59 -> n60
+	n61 [label="Int 
+Nombre = '0'"]
+	n59 -> n61
+	n57 -> n59
+	n51 -> n57
+	n62 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n63 [label="String 
+Nombre = '\"Mi noimbre de ejecucion es %s.\n\"'"]
+	n62 -> n63
+	n64 [label="Operador Unario 
+op = '*'"]
+	n65 [label="Variable 
+Nombre = 'argv'"]
+	n64 -> n65
+	n62 -> n64
+	n51 -> n62
+	n66 [label=For]
+	n67 [label="Operador Binario 
+op = '='"]
+	n68 [label="Variable 
+Nombre = 'i'"]
+	n67 -> n68
+	n69 [label="Int 
+Nombre = '0'"]
+	n67 -> n69
+	n66 -> n67
+	n70 [label="Operador Binario 
+op = '<'"]
+	n71 [label="Variable 
+Nombre = 'i'"]
+	n70 -> n71
+	n72 [label="Variable 
+Nombre = 'argc'"]
+	n70 -> n72
+	n66 -> n70
+	n73 [label="Operador Binario 
+op = '+='"]
+	n74 [label="Variable 
+Nombre = 'i'"]
+	n73 -> n74
+	n75 [label="Int 
+Nombre = '1'"]
+	n73 -> n75
+	n66 -> n73
+	n76 [label=Compuesto]
+	n77 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n78 [label="String 
+Nombre = '\"  argv[%d] es: %s   \"\"  argv[%d] es: %s   \"'"]
+	n77 -> n78
+	n79 [label="Variable 
+Nombre = 'i'"]
+	n77 -> n79
+	n80 [label="Llamada a función 
+Nombre = 'variable(nombre='argv')'"]
+	n81 [label="Variable 
+Nombre = 'i'"]
+	n80 -> n81
+	n77 -> n80
+	n82 [label="Llamada a función 
+Nombre = 'llamada(funcion=variable(nombre='argv'), exp=variable(nombre='i'))'"]
+	n83 [label="Int 
+Nombre = '0'"]
+	n82 -> n83
+	n77 -> n82
+	n76 -> n77
+	n84 [label="Variable 
+Nombre = 'increment_stuff_count'"]
+	n76 -> n84
+	n66 -> n76
+	n51 -> n66
+	n85 [label="Operador Binario 
+op = '='"]
+	n86 [label="Variable 
+Nombre = 'i'"]
+	n85 -> n86
+	n87 [label="Int 
+Nombre = '0'"]
+	n85 -> n87
+	n51 -> n85
+	n88 [label=While]
+	n89 [label="Int 
+Nombre = '1'"]
+	n88 -> n89
+	n90 [label=Compuesto]
+	n91 [label="Variable 
+Nombre = 'show_fib'"]
+	n90 -> n91
+	n92 [label="Operador Binario 
+op = '+='"]
+	n93 [label="Variable 
+Nombre = 'i'"]
+	n92 -> n93
+	n94 [label="Int 
+Nombre = '1'"]
+	n92 -> n94
+	n90 -> n92
+	n95 [label="If + Else"]
+	n96 [label="Operador Binario 
+op = '>'"]
+	n97 [label="Variable 
+Nombre = 'i'"]
+	n96 -> n97
+	n98 [label="Int 
+Nombre = '5'"]
+	n96 -> n98
+	n95 -> n96
+	n99 [label="Break 
+op = 'break'"]
+	n95 -> n99
+	n100 [label="Continue 
+op = 'continue'"]
+	n95 -> n100
+	n90 -> n95
+	n88 -> n90
+	n51 -> n88
+	n101 [label="Operador Binario 
+op = '='"]
+	n102 [label="Variable 
+Nombre = 'stuff_count'"]
+	n101 -> n102
+	n103 [label="Operador Binario 
+op = '*'"]
+	n104 [label="Variable 
+Nombre = 'stuff_count'"]
+	n103 -> n104
+	n105 [label="Int 
+Nombre = '2'"]
+	n103 -> n105
+	n101 -> n103
+	n51 -> n101
+	n106 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n107 [label="String 
+Nombre = '\"fib_count es %d.\n\"'"]
+	n106 -> n107
+	n108 [label="Variable 
+Nombre = 'fib_count'"]
+	n106 -> n108
+	n51 -> n106
+	n109 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n110 [label="String 
+Nombre = '\"stuff_count es %d.\n\"'"]
+	n109 -> n110
+	n111 [label="Variable 
+Nombre = 'stuff_count'"]
+	n109 -> n111
+	n51 -> n109
+	n112 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n113 [label="String 
+Nombre = '\"antes set_a(&c), c == '%c'\n\"'"]
+	n112 -> n113
+	n114 [label="Variable 
+Nombre = 'c'"]
+	n112 -> n114
+	n51 -> n112
+	n115 [label="Llamada a función 
+Nombre = 'variable(nombre='set_a')'"]
+	n116 [label="Operador Unario 
+op = '&'"]
+	n117 [label="Variable 
+Nombre = 'c'"]
+	n116 -> n117
+	n115 -> n116
+	n51 -> n115
+	n118 [label=Compuesto]
+	n119 [label="Definición de variables 
+Tipo = 'int' 
+Var = variable(nombre='a')"]
+	n119 -> False
+	n119 -> False
+	n118 -> n119
+	n120 [label="Definición de variables 
+Tipo = 'char' 
+Var = variable(nombre='b')"]
+	n120 -> False
+	n120 -> False
+	n118 -> n120
+	n121 [label="Definición de variables 
+Tipo = 'int' 
+Var = variable(nombre='c')"]
+	n121 -> False
+	n121 -> False
+	n118 -> n121
+	n122 [label="Operador Binario 
+op = '='"]
+	n123 [label="Variable 
+Nombre = 'a'"]
+	n122 -> n123
+	n124 [label="Operador Unario 
+op = '-'"]
+	n125 [label="Int 
+Nombre = '1'"]
+	n124 -> n125
+	n122 -> n124
+	n118 -> n122
+	n126 [label="Operador Binario 
+op = '='"]
+	n127 [label="Variable 
+Nombre = 'b'"]
+	n126 -> n127
+	n128 [label="Variable 
+Nombre = 'a'"]
+	n126 -> n128
+	n118 -> n126
+	n129 [label="Operador Binario 
+op = '='"]
+	n130 [label="Variable 
+Nombre = 'c'"]
+	n129 -> n130
+	n131 [label="Variable 
+Nombre = 'b'"]
+	n129 -> n131
+	n118 -> n129
+	n132 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n133 [label="String 
+Nombre = '\"  a = %d\n\"'"]
+	n132 -> n133
+	n134 [label="Variable 
+Nombre = 'a'"]
+	n132 -> n134
+	n118 -> n132
+	n135 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n136 [label="String 
+Nombre = '\"  b = %d\n\"'"]
+	n135 -> n136
+	n137 [label="Variable 
+Nombre = 'b'"]
+	n135 -> n137
+	n118 -> n135
+	n138 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n139 [label="String 
+Nombre = '\"  c = %d\n\"'"]
+	n138 -> n139
+	n140 [label="Variable 
+Nombre = 'c'"]
+	n138 -> n140
+	n118 -> n138
+	n51 -> n118
+	n141 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n142 [label="String 
+Nombre = '\"despues set_a(&c), c == '%c'\n\"'"]
+	n141 -> n142
+	n143 [label="Variable 
+Nombre = 'c'"]
+	n141 -> n143
+	n51 -> n141
+	n144 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n145 [label="String 
+Nombre = '\"get_literal() = %s\n\"'"]
+	n144 -> n145
+	n146 [label="Variable 
+Nombre = 'get_literal'"]
+	n144 -> n146
+	n51 -> n144
+	n147 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n148 [label="String 
+Nombre = '\"get_literal()[3] = %c\n\"'"]
+	n147 -> n148
+	n149 [label="Llamada a función 
+Nombre = 'variable(nombre='get_literal')'"]
+	n150 [label="Int 
+Nombre = '3'"]
+	n149 -> n150
+	n147 -> n149
+	n51 -> n147
+	n151 [label=Compuesto]
+	n152 [label="Definición de variables 
+Tipo = 'char' 
+Var = unary(op='*', expr=variable(nombre='c'))"]
+	n152 -> False
+	n152 -> False
+	n151 -> n152
+	n153 [label="Operador Binario 
+op = '='"]
+	n154 [label="Variable 
+Nombre = 'c'"]
+	n153 -> n154
+	n155 [label="Llamada a función 
+Nombre = 'variable(nombre='malloc')'"]
+	n156 [label="Int 
+Nombre = '30'"]
+	n155 -> n156
+	n153 -> n155
+	n151 -> n153
+	n157 [label="Operador Binario 
+op = '='"]
+	n158 [label="Llamada a función 
+Nombre = 'variable(nombre='c')'"]
+	n159 [label="Int 
+Nombre = '0'"]
+	n158 -> n159
+	n157 -> n158
+	n160 [label="Char 
+Nombre = ''h''"]
+	n157 -> n160
+	n151 -> n157
+	n161 [label="Operador Binario 
+op = '='"]
+	n162 [label="Llamada a función 
+Nombre = 'variable(nombre='c')'"]
+	n163 [label="Int 
+Nombre = '1'"]
+	n162 -> n163
+	n161 -> n162
+	n164 [label="Char 
+Nombre = ''i''"]
+	n161 -> n164
+	n151 -> n161
+	n165 [label="Operador Binario 
+op = '='"]
+	n166 [label="Llamada a función 
+Nombre = 'variable(nombre='c')'"]
+	n167 [label="Int 
+Nombre = '2'"]
+	n166 -> n167
+	n165 -> n166
+	n168 [label="Int 
+Nombre = '0'"]
+	n165 -> n168
+	n151 -> n165
+	n169 [label="Llamada a función 
+Nombre = 'variable(nombre='printf')'"]
+	n170 [label="String 
+Nombre = '\"string es: %s\n\"'"]
+	n169 -> n170
+	n171 [label="Variable 
+Nombre = 'c'"]
+	n169 -> n171
+	n151 -> n169
+	n172 [label="Llamada a función 
+Nombre = 'variable(nombre='free')'"]
+	n173 [label="Variable 
+Nombre = 'c'"]
+	n172 -> n173
+	n151 -> n172
+	n51 -> n151
+	n174 [label=Return]
+	n175 [label="Int 
+Nombre = '0'"]
+	n174 -> n175
+	n51 -> n174
+	n50 -> n51
+	n50 -> False
+	n50 -> False
+	n01 -> n50
+}
